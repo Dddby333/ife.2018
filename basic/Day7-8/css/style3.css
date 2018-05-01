@@ -1,0 +1,23 @@
+html,body{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+.wrapper{
+    display: flex;
+    height: 100%;
+}
+
+.left{
+    flex:1 1 auto;
+    height: 100%;
+    background-color: #ccc;
+    border:1px solid #000;
+}
+
+.right{
+    flex:0 1 200px;
+    height: 100%;
+    background-color: aquamarine;
+    border:1px solid #000;
+}
