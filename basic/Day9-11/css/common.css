@@ -383,7 +383,7 @@ input::-moz-placeholder { // Firefox19+
     font-weight: 200;
 }
 
-.crew-container p{
+.crew-container .crew-descirbe{
     font-size: 18px;
     line-height: 26px;
     font-family: 'Montserrat-ExtraLight';
@@ -421,6 +421,54 @@ input::-moz-placeholder { // Firefox19+
     background-size:cover ;
 }
 
+.crew-container .crew-pics .pics .cover3 {
+    background-color:		rgb(0,0,0,0.5);
+    min-height:				340px;
+    min-width:				470px;
+    z-index:			1;
+    position:			absolute;
+    text-align:			center;
+    opacity:			0;
+}
+
+.crew-container .crew-pics .cover3 p {
+    color:				white;
+    z-index:			1;
+}
+
+.crew-container .crew-pics .cover3 p:nth-child(1) {
+    font-size:			1.3em;
+    margin:			120px 0 0 0;
+}
+
+.crew-container .crew-pics .cover3 p:nth-child(2) {
+    opacity:			0.8;
+}
+
+.crew-container .crew-pics .cover3 .circle {
+    height:				50px;
+    width:				50px;
+    border:				1px solid rgb(255,255,255,0.5);
+    border-radius:		50px;
+    display:			inline-block;
+    margin:				20px;
+
+}
+
+.crew-container .crew-pics .cover3 .circle:nth-child(3) {
+    background:	url(../imgs/app2.png) no-repeat center;
+}
+.crew-container .crew-pics .cover3 .circle:nth-child(4) {
+    background:	url(../imgs/app4.png) no-repeat center;
+}
+
+.crew-container .crew-pics .cover3 .circle:nth-child(5) {
+    background:	url(../imgs/app1.png) no-repeat center;
+}
+
+.crew-container .crew-pics .pics:hover > .cover3 {
+    opacity:1;
+}
 
 .contacts-container{
     padding: 70px 0;
