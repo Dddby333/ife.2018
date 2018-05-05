@@ -1,0 +1,37 @@
+1.如何设置背景图上叠加透明度为0.6的黑色背景
+可在父元素中设置背景图片以后在里面添加一个背景为黑色透明度为0.6的div利用绝对定位和z-index覆盖
+
+2.切图后 选中全部切的图 文件 存储为web所用格式 选择文件格式（一般png-24质量较高） 命名 选择文件夹
+
+3.设置背景图后缩小页面比例后背景图跟着缩小
+background-size 若属性值为cover，则缩小时高度会被剪切掉，设置为百分数形式(100% 100%)则会跟着一起放大缩小
+
+4.交互里input改变里面文字的样式，可以用
+input::-webkit-input-placeholder {
+	color: green;
+}
+input:-ms-input-placeholder { // IE10+
+	color: green;
+}
+input:-moz-placeholder { // Firefox4-18
+	color: green;
+}
+input::-moz-placeholder { // Firefox19+
+	color: green;
+}
+
+5.表单里每个input之间会有默认间距，若想消除课在input里设置 display：block; float:left;来消除间距
+
+6，一个常用的消除padding与margin把父元素撑开的方法
+在父元素中加box-sizing:border-box;
+
+7.当浏览器缩小时，右边会出现留白的情况
+原因：当浏览器窗口缩小到小于内层div时，实际内层div元素的宽度大于浏览器宽度，因而被撑开了。
+解决方法在父元素设置min-width：浏览器宽度值；
+【不支持ie6】
+
+8.切小图标技巧：在psd将坐标转化为智能对象 用选择框框住要切的图 Ctrl+C Ctrl+N(新建图层) Ctrl+V 将背景点击不可见 再导出图层png格式
+
+9.每一块最好用padding和margin控制其高度而不设置定稿 以免页面缩放时文字溢出
+
+10.因为vertical-align的初始值为baseline，所以有时候会导致元素向下移留出一大块空白区域的情况，可以设置vertical-align：top等来解决
