@@ -663,10 +663,8 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 
 }
 
-.img:hover a.img-task{
-    background: #7d7b7c;
+.pic-send .img:hover a.img-task{
     opacity: 0.6;!important;
-    z-index: 9990;
 }
 
 
