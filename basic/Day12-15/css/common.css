@@ -663,8 +663,9 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 
 }
 
-.pic-send .img:hover a.img-task{
-    opacity: 0.6;!important;
+.pic-send .img:hover a.img-mask{
+    opacity: 0.6!important;
+    transition: all 0.6s;
 }
 
 
