@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+<input id="first-number" type="number" value="0"  placeholder="第一个数字">
+<input id="second-number" type="number"  value="0" placeholder="第二个数字">
+<button id="add-btn" onclick="addNum()">加</button>
+<button id="minus-btn" onclick="minusNum()">减</button>
+<button id="times-btn" onclick="mulNum()">乘</button>
+<button id="divide-btn" onclick="delNum()">除</button>
+<p id="result">运算结果</p>
+<script>
+    function isNum(obj){
+        return obj === +obj;
+    }
+
+    function addNum() {
+        var x=document.getElementById("first-number").value;
+        var y=document.getElementById("second-number").value;
+        x=parseInt(x);
+        y=parseInt(y);
+        var res=document.getElementById("result");
+        if(!isNum(x)) console.log("第一个数不是数字！");
+        if(!isNum(y)) console.log("第二个数不是数字！");
+        res.innerHTML=x+y;
+    }
+
+    function minusNum() {
+        var x=document.getElementById("first-number").value;
+        var y=document.getElementById("second-number").value;
+        x=parseInt(x);
+        y=parseInt(y);
+        var res=document.getElementById("result");
+        if(!isNum(x)) console.log("第一个数不是数字！");
+        if(!isNum(y)) console.log("第二个数不是数字！");
+        res.innerHTML=x-y;
+    }
+
+    function mulNum() {
+        var x=document.getElementById("first-number").value;
+        var y=document.getElementById("second-number").value;
+        x=parseInt(x);
+        y=parseInt(y);
+        var res=document.getElementById("result");
+        if(!isNum(x)) console.log("第一个数不是数字！");
+        if(!isNum(y)) console.log("第二个数不是数字！");
+        res.innerHTML=x*y;
+    }
+
+    function delNum() {
+        var x=document.getElementById("first-number").value;
+        var y=document.getElementById("second-number").value;
+        var res=document.getElementById("result");
+        x=parseFloat(x);
+        y=parseFloat(y);
+        if(!isNum(x)) console.log("第一个数不是数字！");
+        if(!isNum(y)) console.log("第二个数不是数字！");
+        if(y===0) console.log("除数不可为零！");
+        res.innerHTML=x/y;
+    }
+
+</script>
+</body>
+</html>

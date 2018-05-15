@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>resume</title>
+    <style>
+        .container{
+            border:1px dashed #000;
+            padding:10px 20px;
+            background-color:#ccc;
+            background-image:url(https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1524788193&di=c5c37bd8be499e48cadae9434b8d7d38&src=http://img2-ak.lst.fm/i/u/avatar300s/d0a9889863a4980a6f8aaf72d0ce9114.jpg);
+            background-repeat:no-repeat;
+            background-position:95% 60%;
+        }
+
+        p {
+
+            text-indent:2em;
+            line-height:20px;
+            clear:both;
+        }
+        h1{
+            width:180px;
+            letter-spacing: 50px;
+            margin:0 auto;
+            font-size: 32px;
+            text-shadow: 2px 2px 5px #000;
+        }
+        ul{
+            margin:0;
+            padding:0;
+        }
+        li{
+            margin:5px 30px;
+        }
+
+        .connect{
+            float:left;
+        }
+
+        button{
+            position:relative;
+            top:12px;
+            left:5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>简历</h1>
+    <p>姓名：DENG</p>
+    <p class="connect">联系方式：123456</p>
+    <button>联系我!</button>
+
+    <p>学历：本科</p>
+    <ol>参与项目：
+        <li>项目A 2018/03/03 xxx</li>
+        <li>项目B 2018/04/05 xxx</li>
+        <li>项目C 2018/04/19 xxx</li>
+    </ol>
+    <p id="hobby"></p>
+    <button id="hobbyButton">点击查看我的爱好！</button>
+</div>
+
+<script>
+    window.onload=function(){
+        document.getElementById("hobbyButton").onclick=function(){
+            document.getElementById("hobby").innerHTML ='旅游 代码';
+        }
+        var date=new Date();
+        var time=date.getHours();
+        console.log(time);
+        if(time>6&&time<=11)
+            alert("早上好！");
+        if(time>11&&time<=18)
+            alert("下午好！");
+        else
+            alert("晚上好！");
+    }
+</script>
+</body>
+</html>

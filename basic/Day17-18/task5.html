@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>IFE ECMAScript</title>
+
+</head>
+
+<body>
+
+<button type="button" name="button" onclick="print()">生成九九乘法表！</button>
+
+
+
+<script>
+
+    function print() {
+        var table=document.createElement("table");
+        for(var i=1;i<=9;i++){
+            var tr=document.createElement("tr");
+            tr.style.border="1px black solid";
+            for(var j=1;j<=9;j++){
+                var td=document.createElement("td");
+                td.style.border="1px black solid";
+                td.innerHTML = i + "*" + j + "=" + parseInt(i)*parseInt(j);
+                tr.append(td);
+            }
+            table.append(tr);
+        }
+        document.getElementsByTagName("body")[0].append(table);
+
+    }
+
+
+
+</script>
+
+</body>

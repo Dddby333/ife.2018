@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+<input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+<button id="trans-btn" onclick="dec2bin()">转化为二进制</button>
+<p id="result">运算结果</p>
+<script>
+    function isNumber(obj) {
+        return obj == +obj;
+    }
+
+    function dec2bin(decNumber) {
+        var x=document.getElementById("dec-number").value;
+        x=parseInt(x);
+        if(!isNumber(x))
+            console.log("输入的不是数字！");
+        if(x<0)
+            console.log("输入的数字小于0！");
+        var res="";
+        while(x!=0) {
+            if(x%2===1){
+                res="1"+res;
+                x=(x-1)/2;
+            }
+            else {
+                res="0"+res;
+                x=x/2;
+            }
+        }
+        document.getElementById("result").innerHTML=res;
+    }
+
+
+</script>
+</body>
+</html>

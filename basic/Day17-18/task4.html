@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task4</title>
+</head>
+<body>
+<button type="button" name="button" onclick="print()">在控制台输出！</button>
+<script>
+    function isPA(num) {
+        if(num%3==0||num%10==3||parseInt(num/10)==3)
+            return true;
+        else
+            return false;
+    }
+    function print() {
+        for(var i=1;i<=100;i++){
+            if(isPA(i))
+                console.log("PA");
+            else
+                console.log(i);
+        }
+    }
+</script>
+</body>
+</html>
