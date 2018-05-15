@@ -46,7 +46,8 @@
         var section=document.getElementById(sectionId);
         var spans=document.getElementsByTagName("span");
         for(var i=0;i<spans.length;i++){
-            console.log(spans[i]);
+            if(spans.textContent=="HTML")
+                console.log(spans[i]);
         }
     }
 
