@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>css sprite</title>
+    <style>
+        div{
+            width:480px;
+            height: 480px;
+            background: url("erik.jpg");
+        }
+    </style>
+</head>
+<body>
+<div id="ani"></div>
+<script>
+    window.onload=function(){
+        var ani=document.getElementById("ani");
+        var Y = 480;
+
+        function gif() {
+            ani.style.backgroundPositionY = '-' + Y + 'px';
+           Y>8160?Y=480:Y+=480;
+        }
+        setInterval(gif, 100);
+    }
+</script>
+</body>
+</html>
