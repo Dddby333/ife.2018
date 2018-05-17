@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>...</title>
+    <style>
+        select{
+            display: none;
+        }
+        input{
+            display: inline-block;
+        }
+        div{
+            width:480px;
+            height: 480px;
+            background: url("erik.jpg");
+        }
+        .palette {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .palette li {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+
+        section{
+            margin:30px;
+            width:500px;
+            border: 1px solid #000;
+            padding:30px;
+        }
+    </style>
+</head>
+<body>
+
+<!--task1-->
+<section>
+    <input id="name" type="text">
+    <button id="submit-btn" onclick="clicks()">Submit</button>
+</section>
+
+
+<!--task2-->
+<section>
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">
+        <option>百度</option>
+        <option>爱奇艺</option>
+    </select>
+</section>
+
+
+<!--task3-->
+<section>
+    <ul class="palette">
+        <li style="background-color:crimson"></li>
+        <li style="background-color:bisque"></li>
+        <li style="background-color:blueviolet"></li>
+        <li style="background-color:coral"></li>
+        <li style="background-color:chartreuse"></li>
+        <li style="background-color:darkolivegreen"></li>
+        <li style="background-color:cyan"></li>
+        <li style="background-color:#194738"></li>
+    </ul>
+
+    <p class="color-picker"></p>
+</section>
+
+
+<!--task4-->
+<section>
+    <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+    <button id="fade-btn">淡出</button>
+</section>
+
+
+<!--task5-->
+<section>
+    <div id="ani"></div>
+</section>
+
+
+<script>
+//    task1
+var btn=document.getElementById('submit-btn'),
+    text=document.getElementById('name');
+window.onload=function () {
+    btn.onclick=click();
+    function click() {
+        console.log(text.value);
+    }
+    text.onkeydown=function(event){
+        if(event.keyCode==13 || event.which==13){
+            btn.onclick=click();
+        }
+        else if(event.keyCode==27 || event.which==27){
+            text.value='';
+        }
+        else{
+            return;
+        }
+
+    }
+};
+
+
+//task2
+var school=document.getElementById("school"),
+    company=document.getElementById("company"),
+    sSelect=document.getElementById("school-select"),
+    cSelect=document.getElementById("company-select");
+
+function show() {
+    if(this.id=='school'){
+        sSelect.style.display="block";
+        cSelect.style.display="none";
+    }
+
+    else {
+        cSelect.style.display="block";
+        sSelect.style.display="none";
+    }
+}
+
+school.addEventListener('click',show);
+company.addEventListener('click',show);
+
+
+//task3
+var ul = document.querySelectorAll("ul")[0];
+var p=document.querySelectorAll('p')[0];
+ul.onclick = function(e) {
+    var target = e.target;
+    colorPicker (target);
+};
+function colorPicker(target) {
+    var bgColor = target.style.backgroundColor;
+    p.innerHTML = bgColor;
+    p.style.color = bgColor;
+}
+
+//task4
+var btn2=document.getElementById("fade-btn");
+var fade=document.getElementById("fade-obj");
+var i=1;
+function fadeout() {
+    fade.style.opacity=i;
+    i-=0.1;
+    btn2.disabled='disabled';
+    if(i>0){
+        setTimeout(fadeout,100);
+    }
+    else if(i<=0){
+        btn2.innerText='淡入';
+        btn2.disabled='';
+        btn2.addEventListener('click',fadein);
+    }
+}
+
+function fadein() {
+    fade.style.opacity=i;
+    i += 0.1;
+    btn2.disabled = 'disabled';
+    if (i <1) {
+        setTimeout(fadein, 100);
+    }
+    else if(i>=1)
+    {
+        btn2.disabled='';
+        btn2.innerText='淡出';
+        btn2.addEventListener('click',fadeout);
+    }
+}
+btn2.addEventListener('click',fadeout);
+
+//task5
+window.onload=function(){
+    var ani=document.getElementById("ani");
+    var Y = 480;
+
+    function gif() {
+        ani.style.backgroundPositionY = '-' + Y + 'px';
+        Y>8160?Y=480:Y+=480;
+    }
+    setInterval(gif, 100);
+}
+</script>
+</body>
+</html>
