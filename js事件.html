@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <style>
+        select{
+            display: none;
+        }
+        input{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<!--task1-->
+<input id="name" type="text">
+<button id="submit-btn">Submit</button>
+<script>
+    var btn=document.getElementById('submit-btn'),
+        text=document.getElementById('name');
+    window.onload=function () {
+        btn.onclick=click();
+        function click() {
+            console.log(text.value);
+        }
+        text.onkeydown=function(event){
+            if(event.keyCode==13 || event.which==13){
+                btn.onclick=click();
+            }
+            else if(event.keyCode==27 || event.which==27){
+                text.value='';
+            }
+            else{
+                return;
+            }
+
+        }
+    };
+</script>
+<br/>
+<br/>
+
+<!--task2-->
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">
+        <option>百度</option>
+        <option>爱奇艺</option>
+    </select>
+    <script>
+            var school=document.getElementById("school"),
+                company=document.getElementById("company"),
+                sSelect=document.getElementById("school-select"),
+                cSelect=document.getElementById("company-select");
+
+            function show() {
+                if(this.id=='school'){
+                    sSelect.style.display="block";
+                    cSelect.style.display="none";
+                }
+
+                else {
+                    cSelect.style.display="block";
+                    sSelect.style.display="none";
+                }
+            }
+
+            school.addEventListener('click',show);
+            company.addEventListener('click',show);
+    </script>
+
+
+</body>
+</html>
