@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Day25-27</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        div{
+            width:600px;
+            margin: 0 auto;
+        }
+        select {
+            font-size: 16px;
+            width: 60px;
+            height: 30px;
+            border-radius: 13px;
+        }
+    </style>
+</head>
+<body>
+<div id="timeshow1"></div>
+<div id="timeshow2"></div>
+<div id="time-select">
+    <select id="year-select" onchange="changeDay();prepareDay()"></select>年
+    <select id="month-select" onchange="changeDay();prepareDay()"></select>月
+    <select id="day-select"></select>日
+    <select id="hour-select"></select>时
+    <select id="minite-select"></select>分
+    <select id="second-select"></select>秒
+    <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+</div>
+<script>
+    //任务一
+    function Go() {
+        console.log("Go");
+    }
+
+    function GoSteps(n) {
+        var steps=Math.floor(n);
+        if(n<=0){steps=0;}
+        if(n === undefined) {steps = 1;}
+        if(n === null) {steps = 0;}
+        while (steps--){
+            Go();
+        }
+    }
+//测试用
+//    GoSteps(10); // Go 10次
+//    GoSteps(1); // Go 1次
+//    GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+//    GoSteps(0);  // 0次
+//    GoSteps(-1);  // 0次
+//    GoSteps(1.4);  // Go 1次
+//    GoSteps(1.6);  // Go 1次
+//    GoSteps(-1);  // 0次
+//    GoSteps(true);  // Go 1次
+//    GoSteps(false);  // 0次
+//    GoSteps("Test");  // 0次
+//    GoSteps(NaN);  // 0次
+//    GoSteps(null);  // 0次
+
+
+    //任务二
+    var timeshow1=document.querySelector('#timeshow1');
+    var timeshow2=document.querySelector('#timeshow2');
+
+    function timeshow() {
+        var date=getdate();
+        timeshow1.innerHTML=date[0]+'年'+date[1]+'月'+date[2]+'日'+date[6]+date[3]+':'+date[4]+':'+date[5];
+        timeshow2.innerHTML =date[0]+'-'+date[1]+'-'+date[2]+'&nbsp'+date[7]+'&nbsp'+date[3] +':'+date[4]+':'+date[5]+ '&nbsp'+date[8];
+    }
+
+    function getdate() {
+        var date=new Date();
+        var time=[];
+        time[0]=date.getFullYear();
+        time[1]=date.getMonth()+1;
+        time[2]=date.getDate();
+        time[3]=date.getHours();
+        time[4]=date.getMinutes();
+        time[5]=date.getSeconds();
+        time[6]=checkweek(date.getDay(),1);
+        time[7]=checkweek(date.getDay(),0);
+        time[8]='AM';
+        if(time[3]>12){
+            time[8]='PM';
+            time[3]=time[3]-12;
+        }
+        for(var i=0;i<time.length;i++){
+            checknum(time[i]);
+        }
+        return time;
+    }
+
+    function checkweek(time,lang){
+        var week;
+        if(lang){
+            var week1=['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            week=week1[time];
+        }
+        else{
+            var week2=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            week=week2[time];
+        }
+        return week;
+    }
+
+    function checknum(num) {
+        if(parseInt(num)<10){
+            num='0'+num;
+        }
+        return num;
+    }
+
+    setInterval(function () {
+        timeshow()
+    }, 200);
+//
+//任务三
+    var select=document.querySelectorAll('select');
+    var result=document.querySelector('#result-wrapper');
+
+    function prepareOption(){
+        for(var i=0;i<60;i++){
+
+            createOption(1970+i,0);//年份
+            createOption(i,4);//分
+            createOption(i,5);//秒
+            //月份
+            if(i<12){
+                createOption(i+1,1);
+            }
+
+
+
+            //时
+            if(i<24){
+                createOption(i,3)
+            }
+        }
+    }
+    prepareOption();
+    function prepareDay(){
+        for(var i=1;i<=checkday();i++){
+            createOption(i,2);
+        }
+    }
+    prepareDay();
+
+    function changeDay() {
+        $('#day-select').html("");
+    }
+
+    function createOption(i,j) {
+        var option=document.createElement('option');
+        option.innerText=i;
+        select[j].appendChild(option);
+    }
+
+    function checkday() {
+        var day;
+        var yearIndex=document.querySelector('#year-select').selectedIndex;
+        var year=Number(document.querySelectorAll('#year-select>option')[yearIndex].innerText);
+        var monthIndex=document.querySelector('#month-select').selectedIndex;
+        var month=Number(document.querySelectorAll('#month-select>option')[monthIndex].innerText);
+        switch (month){
+            case 1:case 3:case 5:case 7:case 8:case 10:case 12:
+                day=31;
+                break;
+            case 4:case 6:case 9:case 11:
+                day=30;
+                break;
+            case 2:
+                day=28;
+                if((year%4==0 && year%100!=0)||year%400==0){
+                    day=29;
+                }
+                break;
+        }
+        return day;
+    }
+
+    function showResult(){
+        var choose=new Date();
+        choose.setFullYear(select[0].value);
+        choose.setMonth(select[1].value-1);
+        choose.setDate(select[2].value);
+        choose.setHours(select[3].value);
+        choose.setMinutes(select[4].value);
+        choose.setSeconds(select[5].value);
+        var weekday=checkday(choose,1);
+        var now=new Date();
+        if(now>=choose){
+            var dateDiv=now-choose;
+        }else{
+            dateDiv=choose-now;
+        }//===var dateDiv=(now-choose)?(now-choose):(choose-now);
+        //相见后得到相差的毫秒数
+        console.log(dateDiv);
+        var dayDiv = Math.floor(dateDiv/1000/60/60/24);
+        var hourDiv = Math.floor(dateDiv/1000/60/60%24);
+        var minuteDiv = Math.floor(dateDiv/1000/60%60);
+        var secondDiv = Math.floor(dateDiv/1000%60);
+        if(now<choose){
+            result.innerHTML="现在距离"+select[0].value+"年"+select[1].value+"月"+select[2].value+"日"+weekday+" "+select[3].value+":"+select[4].value+":"+select[5].value+"还有"+
+                    dayDiv+"天"+hourDiv+"小时"+minuteDiv+"分"+secondDiv+"秒";
+            setTimeout('showResult()',1000);
+        }else{
+            result.innerHTML="现在距离"+select[0].value+"年"+select[1].value+"月"+select[2].value+"日"+weekday+" "+select[3].value+":"+select[4].value+":"+select[5].value+"已经过去"+
+                dayDiv+"天"+hourDiv+"小时"+minuteDiv+"分"+secondDiv+"秒";
+            setTimeout('showResult()',1000);
+        }
+    }
+    showResult();
+</script>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+
+</body>
+</html>
